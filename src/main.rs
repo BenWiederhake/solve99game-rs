@@ -9,7 +9,7 @@ use std::iter::FusedIterator;
 // FIXME: Use 'try_into' instead of casts.
 // Or maybe even https://docs.rs/index_vec/0.1.0/index_vec/
 
-const BASE : usize = 8;
+const BASE : usize = 10;
 // Theoretically, 8 is pretty safe.
 // https://en.wikipedia.org/wiki/Birthday_problem#Probability_table
 const HASH_BYTES : usize = 16;
@@ -378,12 +378,14 @@ fn run(start: &FullBoard) -> Vec<BoardMove> {
 
         let (current_g_score, current_fullstate) = reconstruct_state(
             current_incremental_index, &all_set, start);
-        println!("Looking at {:?}@all, g+h={}, step {}:\n\tTurn {:2}, {:?}",
-            current_incremental_index,
-            current_gh_score,
-            steps,
-            current_g_score,
-            current_fullstate);
+        let reporting = (steps < 50) || (steps % 10000 == 0);
+        if reporting {
+            println!("Looking at {:?}@all, g+h={}, {:?}",
+                current_incremental_index, current_gh_score, current_fullstate);
+            let open_size: usize = open_set.iter().map(|e| e.1.len()).sum();
+            println!("\tTurn {:3}: {:7} steps, {:7} open, {:7} closed",
+                current_g_score, steps, open_size, all_set.len());
+        }
         steps += 1;
         /* Usually we would need to check whether we have reached the goal here.
          * However, since the moves in 99game have uniform cost, we can push
@@ -391,7 +393,9 @@ fn run(start: &FullBoard) -> Vec<BoardMove> {
 
         for (move_index, the_move) in current_fullstate.moves().enumerate() {
             let neighbor_fullstate = current_fullstate.apply_move(the_move);
-            /* println!("\t{:?} to {:?}", the_move, neighbor_fullstate); */
+            if reporting && false {
+                println!("\t{:?} to {:?}", the_move, neighbor_fullstate);
+            }
             let neighbor_incremental = IncrementalNode{
                 prev_index: current_incremental_index,
                 move_index: move_index as u8,
