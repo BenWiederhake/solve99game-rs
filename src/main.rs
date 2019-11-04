@@ -9,7 +9,7 @@ use std::iter::FusedIterator;
 // FIXME: Use 'try_into' instead of casts.
 // Or maybe even https://docs.rs/index_vec/0.1.0/index_vec/
 
-const BASE : usize = 4;
+const BASE : usize = 6;
 // Theoretically, 8 is pretty safe.
 // https://en.wikipedia.org/wiki/Birthday_problem#Probability_table
 const HASH_BYTES : usize = 16;
@@ -86,8 +86,9 @@ impl FullBoard {
             skip_a, skip_b, parent.0.len(), parent);
         let mut intermediate = parent.clone();
         assert!(is_match(intermediate.0[skip_a as usize], intermediate.0[skip_b as usize]),
-            "tried to eliminate pair {} {}",
-            intermediate.0[skip_a as usize], intermediate.0[skip_b as usize]);
+            "tried to eliminate pair {}@{} {}@{}",
+            intermediate.0[skip_a as usize], skip_a,
+            intermediate.0[skip_b as usize], skip_b);
         intermediate.0[skip_a as usize] = 0;
         intermediate.0[skip_b as usize] = 0;
         intermediate.clean_dead_around(skip_b);
@@ -146,7 +147,7 @@ impl FullBoard {
     fn find_down(&self, start_index: usize) -> Option<(usize, BoardCell)> {
         for (i, &element) in self.0[start_index..].iter().step_by(BASE - 1).enumerate().skip(1) {
             if 0 != element {
-                return Some((start_index + i * BASE - 1, element));
+                return Some((start_index + i * (BASE - 1), element));
             }
         }
         None
@@ -354,17 +355,18 @@ fn run(start: &FullBoard) -> Vec<BoardMove> {
     loop {
         /* Pop a single element from the "open" set.
          * Lots of special cases because of reasons. */
-        let (remove_gh, current_incremental_index) = match open_set.iter_mut().next() {
-            None => return Vec::with_capacity(0),
-            Some((&current_gh, current_stack)) => {
-                assert!(!current_stack.is_empty());
-                if current_stack.len() == 1 {
-                    (Some(current_gh), current_stack.pop().unwrap())
-                } else {
-                    (None, current_stack.pop().unwrap())
+        let (remove_gh, current_gh_score, current_incremental_index) =
+            match open_set.iter_mut().next() {
+                None => return Vec::with_capacity(0),
+                Some((&current_gh, current_stack)) => {
+                    assert!(!current_stack.is_empty());
+                    if current_stack.len() == 1 {
+                        (Some(current_gh), current_gh, current_stack.pop().unwrap())
+                    } else {
+                        (None, current_gh, current_stack.pop().unwrap())
+                    }
                 }
-            }
-        };
+            };
         if let Some(gh_val) = remove_gh {
             open_set.remove(&gh_val);
         }
@@ -375,8 +377,9 @@ fn run(start: &FullBoard) -> Vec<BoardMove> {
 
         let (current_g_score, current_fullstate) = reconstruct_state(
             current_incremental_index, &all_set, start);
-        println!("Looking at {:?}:\n\tTurn {:2}, {:?}",
+        println!("Looking at {:?}@all, g+h={}:\n\tTurn {:2}, {:?}",
             current_incremental_index,
+            current_gh_score,
             current_g_score,
             current_fullstate);
         /* Usually we would need to check whether we have reached the goal here.
@@ -385,7 +388,7 @@ fn run(start: &FullBoard) -> Vec<BoardMove> {
 
         for (move_index, the_move) in current_fullstate.moves().enumerate() {
             let neighbor_fullstate = current_fullstate.apply_move(the_move);
-            println!("\t{:?} to {:?}", the_move, neighbor_fullstate);
+            /* println!("\t{:?} to {:?}", the_move, neighbor_fullstate); */
             let neighbor_incremental = IncrementalNode{
                 prev_index: current_incremental_index,
                 move_index: move_index as u8,
