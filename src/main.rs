@@ -5,11 +5,12 @@ extern crate openssl;
 use std::collections::{BTreeMap, HashMap};
 use std::fmt;
 use std::iter::FusedIterator;
+use std::mem;
 
 // FIXME: Use 'try_into' instead of casts.
 // Or maybe even https://docs.rs/index_vec/0.1.0/index_vec/
 
-const BASE : usize = 10;
+const BASE : usize = 2;
 // Theoretically, 8 is pretty safe.
 // https://en.wikipedia.org/wiki/Birthday_problem#Probability_table
 const HASH_BYTES : usize = 16;
@@ -322,7 +323,6 @@ fn run(start: &FullBoard) -> Vec<BoardMove> {
     let mut steps = 0;
 
     {
-        use std::mem;
         let bytes_incr = (mem::size_of::<BoardIndex>() + mem::size_of::<IncrementalNode>()) as f32;
         let bytes_seen = mem::size_of::<(BoardHash, (Cost, BoardIndex))>() as f32 * 1.5;
         println!("Each node needs a total of {:.2} bytes ({} incremental, {} seen).",
@@ -380,11 +380,18 @@ fn run(start: &FullBoard) -> Vec<BoardMove> {
             current_incremental_index, &all_set, start);
         let reporting = (steps < 50) || (steps % 10000 == 0);
         if reporting {
-            println!("Looking at {:?}@all, g+h={}, {:?}",
-                current_incremental_index, current_gh_score, current_fullstate);
             let open_size: usize = open_set.iter().map(|e| e.1.len()).sum();
-            println!("\tTurn {:3}: {:7} steps, {:7} open, {:7} closed",
-                current_g_score, steps, open_size, all_set.len());
+            let incr_memory =
+                mem::size_of::<BoardIndex>() * open_size * 2 +
+                mem::size_of::<IncrementalNode>() * all_set.len() * 2;
+            let hash_memory =
+                mem::size_of::<(BoardHash, (Cost, BoardIndex))>() * seen.len();
+            println!("Need {:2} turns, {:7} steps, {:7} open, {:7} closed, looking at turn {:2}, {:5.1}+{:5.1} MiB in use",
+                current_gh_score, steps, open_size, all_set.len() - open_size,
+                current_g_score,
+                incr_memory as f32 / 1048576f32,
+                hash_memory as f32 / 1048576f32,
+            );
         }
         steps += 1;
         /* Usually we would need to check whether we have reached the goal here.
@@ -405,6 +412,7 @@ fn run(start: &FullBoard) -> Vec<BoardMove> {
             if neighbor_fullstate.is_goal() {
                 let neighbor_all_index = all_set.len() as BoardIndex;
                 all_set.push(neighbor_incremental);
+                println!("Done after {} steps.", steps);
                 return reconstruct_path(neighbor_all_index, &all_set, start).0;
             }
             let neighbor_g_score = current_g_score + 1;
