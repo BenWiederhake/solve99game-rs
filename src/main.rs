@@ -9,7 +9,7 @@ use std::iter::FusedIterator;
 // FIXME: Use 'try_into' instead of casts.
 // Or maybe even https://docs.rs/index_vec/0.1.0/index_vec/
 
-const BASE : usize = 6;
+const BASE : usize = 8;
 // Theoretically, 8 is pretty safe.
 // https://en.wikipedia.org/wiki/Birthday_problem#Probability_table
 const HASH_BYTES : usize = 16;
@@ -319,6 +319,7 @@ fn run(start: &FullBoard) -> Vec<BoardMove> {
     // Using a HashMap instead of a BTreeMap should be more memory-efficient,
     // even though HashMap has a load_factor of 2.
     let mut seen = HashMap::<BoardHash, (Cost, BoardIndex)>::new();
+    let mut steps = 0;
 
     {
         use std::mem;
@@ -377,11 +378,13 @@ fn run(start: &FullBoard) -> Vec<BoardMove> {
 
         let (current_g_score, current_fullstate) = reconstruct_state(
             current_incremental_index, &all_set, start);
-        println!("Looking at {:?}@all, g+h={}:\n\tTurn {:2}, {:?}",
+        println!("Looking at {:?}@all, g+h={}, step {}:\n\tTurn {:2}, {:?}",
             current_incremental_index,
             current_gh_score,
+            steps,
             current_g_score,
             current_fullstate);
+        steps += 1;
         /* Usually we would need to check whether we have reached the goal here.
          * However, since the moves in 99game have uniform cost, we can push
          * this test one iteration up into the expansion phase. */
