@@ -129,17 +129,51 @@ Base	Len	Solution
 19	27	16,2,>, 14,1,v, 12,1,v, 10,1,v, 9,1,v, 8,1,v, 6,1,v, 4,1,v, 1,1,>, 0,1,v, 17,1,>, 16,1,>, 15,1,>, 13,1,>, 11,1,>, 7,1,>, 5,1,>, 3,1,>, 8,0,>, 7,0,>, 6,0,>, 5,0,>, 4,0,>, 3,0,>, 2,0,>, 1,0,>, 0,0,>
 20	57	17,2,>, 'expand', 1,4,>, 18,3,v, 0,3,v, 17,3,>, 16,2,>, 1,2,v, 0,2,v, 17,4,>, 16,4,>, 15,4,>, 14,4,>, 13,4,>, 12,4,>, 11,4,>, 10,4,>, 9,4,>, 8,4,>, 7,4,>, 6,4,>, 5,4,>, 4,4,>, 1,1,>, 18,0,v, 17,1,>, 16,1,>, 15,1,>, 14,1,>, 13,1,>, 12,1,>, 11,1,>, 10,1,>, 9,1,>, 8,1,>, 7,1,>, 6,1,>, 5,1,>, 4,1,>, 16,0,v, 15,0,v, 14,0,v, 13,0,v, 12,0,v, 11,0,v, 10,0,v, 9,0,v, 8,0,v, 7,0,v, 6,0,v, 5,0,v, 4,0,v, 2,0,v, 0,0,v, 17,0,>, 3,0,v, 1,0,>
 21	30	18,2,>, 16,1,v, 14,1,v, 12,1,v, 10,1,v, 8,1,v, 6,1,v, 4,1,v, 1,1,>, 0,1,v, 19,1,>, 18,1,>, 17,1,>, 15,1,>, 13,1,>, 11,1,>, 9,1,>, 7,1,>, 5,1,>, 3,1,>, 9,0,>, 8,0,>, 7,0,>, 6,0,>, 5,0,>, 4,0,>, 3,0,>, 2,0,>, 1,0,>, 0,0,>
-22	>=61	??
+22	63	19,2,>, 'expand', 1,4,>, 20,3,v, 0,3,v, 19,3,>, 18,2,>, 1,2,v, 0,2,v, 19,4,>, 18,4,>, 17,4,>, 16,4,>, 15,4,>, 14,4,>, 13,4,>, 12,4,>, 11,4,>, 10,4,>, 9,4,>, 8,4,>, 7,4,>, 6,4,>, 5,4,>, 4,4,>, 1,1,>, 20,0,v, 19,1,>, 18,1,>, 17,1,>, 16,1,>, 15,1,>, 14,1,>, 13,1,>, 12,1,>, 11,1,>, 10,1,>, 9,1,>, 8,1,>, 7,1,>, 6,1,>, 5,1,>, 4,1,>, 18,0,v, 17,0,v, 16,0,v, 15,0,v, 14,0,v, 13,0,v, 12,0,v, 11,0,v, 10,0,v, 9,0,v, 8,0,v, 7,0,v, 6,0,v, 5,0,v, 4,0,v, 2,0,v, 0,0,v, 19,0,>, 3,0,v, 1,0,>
 23	33	20,2,>, 18,1,v, 16,1,v, 14,1,v, 12,1,v, 11,1,v, 10,1,v, 8,1,v, 6,1,v, 4,1,v, 1,1,>, 0,1,v, 21,1,>, 20,1,>, 19,1,>, 17,1,>, 15,1,>, 13,1,>, 9,1,>, 7,1,>, 5,1,>, 3,1,>, 10,0,>, 9,0,>, 8,0,>, 7,0,>, 6,0,>, 5,0,>, 4,0,>, 3,0,>, 2,0,>, 1,0,>, 0,0,>
+24	>=67	??
+25	36	22,2,>, 20,1,v, 18,1,v, 16,1,v, 14,1,v, 12,1,v, 10,1,v, 8,1,v, 6,1,v, 4,1,v, 1,1,>, 0,1,v, 23,1,>, 22,1,>, 21,1,>, 19,1,>, 17,1,>, 15,1,>, 13,1,>, 11,1,>, 9,1,>, 7,1,>, 5,1,>, 3,1,>, 11,0,>, 10,0,>, 9,0,>, 8,0,>, 7,0,>, 6,0,>, 5,0,>, 4,0,>, 3,0,>, 2,0,>, 1,0,>, 0,0,>
+26	??	??
+27	39	24,2,>, 22,1,v, 20,1,v, 18,1,v, 16,1,v, 14,1,v, 13,1,v, 12,1,v, 10,1,v, 8,1,v, 6,1,v, 4,1,v, 1,1,>, 0,1,v, 25,1,>, 24,1,>, 23,1,>, 21,1,>, 19,1,>, 17,1,>, 15,1,>, 11,1,>, 9,1,>, 7,1,>, 5,1,>, 3,1,>, 12,0,>, 11,0,>, 10,0,>, 9,0,>, 8,0,>, 7,0,>, 6,0,>, 5,0,>, 4,0,>, 3,0,>, 2,0,>, 1,0,>, 0,0,>
+28	??	??
+29	42	26,2,>, 24,1,v, 22,1,v, 20,1,v, 18,1,v, 16,1,v, 14,1,v, 12,1,v, 10,1,v, 8,1,v, 6,1,v, 4,1,v, 1,1,>, 0,1,v, 27,1,>, 26,1,>, 25,1,>, 23,1,>, 21,1,>, 19,1,>, 17,1,>, 15,1,>, 13,1,>, 11,1,>, 9,1,>, 7,1,>, 5,1,>, 3,1,>, 13,0,>, 12,0,>, 11,0,>, 10,0,>, 9,0,>, 8,0,>, 7,0,>, 6,0,>, 5,0,>, 4,0,>, 3,0,>, 2,0,>, 1,0,>, 0,0,>
+30	??	??
 ```
 
-Have fun running it with more time and RAM.
+Have fun running it with more time and RAM.  The above numbers are limited in RAM to 4 GiB:
 
-Sadly, the sequence "3,3,6,6,9,9,15,12,26,15,33,18,39,21,45,24,51,27,57,30,>=61" is [not known](https://oeis.org/search?q=3,3,6,6,9,9,15).
+```
+$ cargo build --release && /usr/bin/time cargo run --release
+   Compiling solve99game-rs v0.1.0 (/home/eispin/workspace/solve99game-rs)
+    Finished release [optimized] target(s) in 2.40s
+    Finished release [optimized] target(s) in 0.02s
+     Running `target/release/solve99game-rs`
+Running with BASE = 24
+Initial board = FullBoard([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 1, 1, 1, 2, 1, 3, 1, 4, 1, 5, 1, 6, 1, 7, 1, 8, 1, 9, 1, 10, 1, 11, 1, 12, 1, 13, 1, 14, 1, 15, 1, 16, 1, 17, 1, 18, 1, 19, 1, 20, 1, 21, 1, 22, 1, 23])
+Hash = [69, 141, 111, 186, 49, 164, 247, 77, 218, 143, 39, 160, 218, 14, 44, 176]
+Each node needs a total of 48.00 bytes (12 incremental, 36 seen).
+The 'seen' HashMap is responsible for 36.00 bytes of that, instead of 21+eps.
+IncrementalNode is 8 instead of 4 + 1 = 5
+Theoretical minimum is 4 + 5 + 16 + 1 + 4 = 30
+---------------------------------------------
+Need  0 turns,       0 steps,       0 open,       1 closed, looking at turn  0,   0.0+  0.0 MiB in use
+Need 36 turns,       1 steps,       9 open,       2 closed, looking at turn  1,   0.0+  0.0 MiB in use
+Need 36 turns,       2 steps,      16 open,       3 closed, looking at turn  2,   0.0+  0.0 MiB in use
+<Some lines omitted>
+Need 67 turns, 29330000 steps, 29329941 open, 29330001 closed, looking at turn 18, 1118.8+1342.6 MiB in use
+Need 67 turns, 29340000 steps, 29339898 open, 29340001 closed, looking at turn 10, 1119.2+1343.1 MiB in use
+Need 67 turns, 29350000 steps, 29349891 open, 29350001 closed, looking at turn  8, 1119.6+1343.5 MiB in use
+Need 67 turns, 29360000 steps, 29359886 open, 29360001 closed, looking at turn  9, 1120.0+1344.0 MiB in use
+memory allocation of 3355443216 bytes failedCommand terminated by signal 6
+2716.00user 5.71system 45:37.69elapsed 99%CPU (0avgtext+0avgdata 2765668maxresident)k
+0inputs+0outputs (0major+577855minor)pagefaults 0swaps
+```
+
+Sadly, the sequence "3,3,6,6,9,9,15,12,26,15,33,18,39,21,45,24,51,27,57,30,63,…" is [not known](https://oeis.org/search?q=3,3,6,6,9,9,15).
 What comes next?  Who knows? :D
 
 Since odd degrees are trivial, we might instead want to look at even degrees:
-But the sequence "3,6,9,15,26,33,39,45,51,57,>=61" is also [not known](https://oeis.org/search?q=3,6,9,15,26,33),
+But the sequence "3,6,9,15,26,33,39,45,51,57,63,…" is also [not known](https://oeis.org/search?q=3,6,9,15,26,33),
 neither is the [difference sequence](https://oeis.org/search?q=3,3,6,11,7).
 
 ## TODOs
