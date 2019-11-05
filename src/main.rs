@@ -10,7 +10,7 @@ use std::mem;
 // FIXME: Use 'try_into' instead of casts.
 // Or maybe even https://docs.rs/index_vec/0.1.0/index_vec/
 
-const BASE : usize = 2;
+const BASE : usize = 16;
 // Theoretically, 8 is pretty safe.
 // https://en.wikipedia.org/wiki/Birthday_problem#Probability_table
 const HASH_BYTES : usize = 16;
